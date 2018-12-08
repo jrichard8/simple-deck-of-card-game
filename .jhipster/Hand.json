@@ -1,0 +1,21 @@
+{
+    "name": "Hand",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "cards",
+            "otherEntityName": "card",
+            "otherEntityRelationshipName": "hand"
+        }
+    ],
+    "changelogDate": "20181208124626",
+    "entityTableName": "hand",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

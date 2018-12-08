@@ -1,0 +1,57 @@
+entity Game {
+    name String required,
+}
+
+entity Deck {
+}
+
+entity Suit {
+	suitType SuitEnum required,
+}
+
+entity Card {
+	suitType SuitEnum required,
+    value ValueEnum required
+}
+
+entity Player {
+	name String required,
+    sumOfCardValue Integer,
+}
+
+entity Hand {
+}
+
+enum SuitEnum {
+    CLUB, DIAMOND, SPADE, HEART
+}
+
+enum ValueEnum{
+	ACE, 
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN,
+    JACK,
+    QUEEN,
+    KING
+}
+
+relationship OneToMany {
+	Deck{suits} to Suit,
+    Suit{suits} to Card,
+    Game{decks} to Deck,
+    Game{players} to Player,
+    Hand{cards} to Card
+}
+
+relationship OneToOne {
+	Player{hand} to Hand,
+}
+
+

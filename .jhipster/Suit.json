@@ -1,0 +1,36 @@
+{
+    "name": "Suit",
+    "fields": [
+        {
+            "fieldName": "suitType",
+            "fieldType": "SuitEnum",
+            "fieldValues": "CLUB,DIAMOND,SPADE,HEART",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "deck",
+            "otherEntityName": "deck",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "suits",
+            "otherEntityName": "card",
+            "otherEntityRelationshipName": "suit"
+        }
+    ],
+    "changelogDate": "20181208124623",
+    "entityTableName": "suit",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

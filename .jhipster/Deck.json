@@ -1,0 +1,27 @@
+{
+    "name": "Deck",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipName": "game",
+            "otherEntityName": "game",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "suits",
+            "otherEntityName": "suit",
+            "otherEntityRelationshipName": "deck"
+        }
+    ],
+    "changelogDate": "20181208124622",
+    "entityTableName": "deck",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

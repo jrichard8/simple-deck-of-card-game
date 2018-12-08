@@ -5,6 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124621_added_entity_Game.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124622_added_entity_Deck.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124623_added_entity_Suit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124624_added_entity_Card.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124625_added_entity_Player.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124626_added_entity_Hand.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20181208124622_added_entity_constraints_Deck.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124623_added_entity_constraints_Suit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124624_added_entity_constraints_Card.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181208124625_added_entity_constraints_Player.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,35 @@
+{
+    "name": "Game",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "decks",
+            "otherEntityName": "deck",
+            "otherEntityRelationshipName": "game"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "players",
+            "otherEntityName": "player",
+            "otherEntityRelationshipName": "game"
+        }
+    ],
+    "changelogDate": "20181208124621",
+    "entityTableName": "game",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

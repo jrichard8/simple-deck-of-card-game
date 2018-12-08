@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="card">
+            <h2><span>Card</span> {{card.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Suit Type</span></dt>
+                <dd>
+                    <span>{{card.suitType}}</span>
+                </dd>
+                <dt><span>Value</span></dt>
+                <dd>
+                    <span>{{card.value}}</span>
+                </dd>
+                <dt><span>Suit</span></dt>
+                <dd>
+                    <div *ngIf="card.suit">
+                        <a [routerLink]="['/suit', card.suit?.id, 'view']">{{card.suit?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Hand</span></dt>
+                <dd>
+                    <div *ngIf="card.hand">
+                        <a [routerLink]="['/hand', card.hand?.id, 'view']">{{card.hand?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/card', card.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
