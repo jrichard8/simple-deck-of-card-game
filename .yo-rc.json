@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.jrichard.logmein.deckofcard"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "simpleDeckOfCardGame",
+    "packageName": "com.jrichard.logmein.deckofcard",
+    "packageFolder": "com/jrichard/logmein/deckofcard",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDFhOGVmMWIzMDJiYjQxNjg1YmQ3YjA0ZmEyNmI4ZmJlMDk4NDE0MzliZThlMGNjNjg3MGVjMmU5NzQ2ZGI3OGZkMDg4MDI5ZGNhYjU1NTAyZDgwNGY2NTAxNWZmMTE1NjhhMTM5OTUwNTUzNTg3MTM5YTExM2JiNzM2NTkwYzM=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
