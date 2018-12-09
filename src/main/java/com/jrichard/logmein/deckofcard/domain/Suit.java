@@ -35,7 +35,7 @@ public class Suit implements Serializable {
     @JsonIgnoreProperties("suits")
     private Deck deck;
 
-    @OneToMany(mappedBy = "suit")
+    @OneToMany(mappedBy = "suit", cascade = CascadeType.REMOVE)
     private Set<Card> cards = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

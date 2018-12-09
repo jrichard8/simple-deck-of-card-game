@@ -22,7 +22,7 @@ public class Hand implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "hand")
+    @OneToMany(mappedBy = "hand", cascade = CascadeType.REMOVE)
     private Set<Card> cards = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
