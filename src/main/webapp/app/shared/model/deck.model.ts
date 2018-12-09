@@ -3,7 +3,6 @@ import { ISuit } from 'app/shared/model//suit.model';
 
 export interface IDeck {
     id?: number;
-    game?: IGame;
     suits?: ISuit[];
 }
 

@@ -36,7 +36,7 @@ public class Suit implements Serializable {
     private Deck deck;
 
     @OneToMany(mappedBy = "suit")
-    private Set<Card> suits = new HashSet<>();
+    private Set<Card> cards = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -72,29 +72,29 @@ public class Suit implements Serializable {
         this.deck = deck;
     }
 
-    public Set<Card> getSuits() {
-        return suits;
+    public Set<Card> getCards() {
+        return cards;
     }
 
-    public Suit suits(Set<Card> cards) {
-        this.suits = cards;
+    public Suit cards(Set<Card> cards) {
+        this.cards = cards;
         return this;
     }
 
-    public Suit addSuits(Card card) {
-        this.suits.add(card);
+    public Suit addCards(Card card) {
+        this.cards.add(card);
         card.setSuit(this);
         return this;
     }
 
-    public Suit removeSuits(Card card) {
-        this.suits.remove(card);
+    public Suit removeCards(Card card) {
+        this.cards.remove(card);
         card.setSuit(null);
         return this;
     }
 
-    public void setSuits(Set<Card> cards) {
-        this.suits = cards;
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

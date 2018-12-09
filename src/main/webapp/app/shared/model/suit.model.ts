@@ -12,9 +12,9 @@ export interface ISuit {
     id?: number;
     suitType?: SuitEnum;
     deck?: IDeck;
-    suits?: ICard[];
+    cards?: ICard[];
 }
 
 export class Suit implements ISuit {
-    constructor(public id?: number, public suitType?: SuitEnum, public deck?: IDeck, public suits?: ICard[]) {}
+    constructor(public id?: number, public suitType?: SuitEnum, public deck?: IDeck, public cards?: ICard[]) {}
 }

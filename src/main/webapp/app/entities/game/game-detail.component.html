@@ -9,7 +9,16 @@
                 <dd>
                     <span>{{game.name}}</span>
                 </dd>
+                <dd>Players</dd>
+                <dd>
+                    <ul>
+                        <li *ngFor="let player of game.players">
+                            <a [routerLink]="['/player', player.id, 'view' ]">{{player.name}}</a>
+                        </li>
+                    </ul>
+                </dd>
             </dl>
+
 
             <button type="submit"
                     (click)="previousState()"

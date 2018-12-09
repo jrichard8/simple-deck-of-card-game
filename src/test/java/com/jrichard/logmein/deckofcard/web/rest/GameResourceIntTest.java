@@ -7,6 +7,7 @@ import com.jrichard.logmein.deckofcard.repository.GameRepository;
 import com.jrichard.logmein.deckofcard.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -37,6 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SimpleDeckOfCardGameApp.class)
+@Ignore
 public class GameResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";

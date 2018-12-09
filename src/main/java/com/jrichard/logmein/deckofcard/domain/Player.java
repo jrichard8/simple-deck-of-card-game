@@ -32,7 +32,8 @@ public class Player implements Serializable {
     @JsonIgnoreProperties("players")
     private Game game;
 
-    @OneToOne    @JoinColumn(unique = true)
+    @OneToOne
+    @JoinColumn(unique = true)
     private Hand hand;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

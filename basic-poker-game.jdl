@@ -44,7 +44,7 @@ enum ValueEnum{
 
 relationship OneToMany {
 	Deck{suits} to Suit,
-    Suit{suits} to Card,
+    Suit{cards} to Card,
     Game{decks} to Deck,
     Game{players} to Player,
     Hand{cards} to Card

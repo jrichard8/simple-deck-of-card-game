@@ -3,20 +3,27 @@ package com.jrichard.logmein.deckofcard.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.jrichard.logmein.deckofcard.domain.Game;
 import com.jrichard.logmein.deckofcard.repository.GameRepository;
+import com.jrichard.logmein.deckofcard.service.GameService;
+import com.jrichard.logmein.deckofcard.service.dto.GameDTO;
+import com.jrichard.logmein.deckofcard.service.mapper.GameMapper;
 import com.jrichard.logmein.deckofcard.web.rest.errors.BadRequestAlertException;
 import com.jrichard.logmein.deckofcard.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Game.
@@ -35,6 +42,9 @@ public class GameResource {
         this.gameRepository = gameRepository;
     }
 
+    @Autowired
+    public GameService gameService;
+
     /**
      * POST  /games : Create a new game.
      *
@@ -44,15 +54,17 @@ public class GameResource {
      */
     @PostMapping("/games")
     @Timed
-    public ResponseEntity<Game> createGame(@Valid @RequestBody Game game) throws URISyntaxException {
-        log.debug("REST request to save Game : {}", game);
+    public ResponseEntity<GameDTO> createGame(@AuthenticationPrincipal User user, @Valid @RequestBody Game game) throws URISyntaxException {
+        log.debug("REST request to save Game : {} with user: {}", game, user);
         if (game.getId() != null) {
             throw new BadRequestAlertException("A new game cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Game result = gameRepository.save(game);
+        gameService.initializeGame(game);
+        final Game result = gameService.saveAll(game);
+        final GameDTO returnedData = GameMapper.INSTANCE.gameToGameDto(game);
         return ResponseEntity.created(new URI("/api/games/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+            .body(returnedData);
     }
 
     /**
@@ -66,15 +78,17 @@ public class GameResource {
      */
     @PutMapping("/games")
     @Timed
-    public ResponseEntity<Game> updateGame(@Valid @RequestBody Game game) throws URISyntaxException {
+    @Transactional
+    public ResponseEntity<GameDTO> updateGame(@Valid @RequestBody Game game) throws URISyntaxException {
         log.debug("REST request to update Game : {}", game);
         if (game.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Game result = gameRepository.save(game);
+        gameRepository.save(game);
+        final GameDTO returnedData = GameMapper.INSTANCE.gameToGameDto(game);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, game.getId().toString()))
-            .body(result);
+            .body(returnedData);
     }
 
     /**
@@ -84,9 +98,14 @@ public class GameResource {
      */
     @GetMapping("/games")
     @Timed
-    public List<Game> getAllGames() {
+    @Transactional
+    public List<GameDTO> getAllGames() {
         log.debug("REST request to get all Games");
-        return gameRepository.findAll();
+        List<Game> all = gameRepository.findAll();
+        List<GameDTO> collect = all.stream()
+            .map(game -> GameMapper.INSTANCE.gameToGameDto(game))
+            .collect(Collectors.toList());
+        return collect;
     }
 
     /**
@@ -97,10 +116,18 @@ public class GameResource {
      */
     @GetMapping("/games/{id}")
     @Timed
-    public ResponseEntity<Game> getGame(@PathVariable Long id) {
+    @Transactional
+    public ResponseEntity<GameDTO> getGame(@PathVariable Long id) {
         log.debug("REST request to get Game : {}", id);
-        Optional<Game> game = gameRepository.findById(id);
-        return ResponseUtil.wrapOrNotFound(game);
+        Optional<Game> gameOptional = gameRepository.findById(id);
+        if(!gameOptional.isPresent()) {
+            throw new IllegalArgumentException();
+        }
+        Game game = gameOptional.get();
+        GameDTO gameDTO = GameMapper.INSTANCE.gameToGameDto(game);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, game.getId().toString()))
+            .body(gameDTO);
     }
 
     /**

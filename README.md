@@ -21,11 +21,12 @@ A complete Spring application:
 
 * Spring Boot for easy application configuration
 * Maven configuration for building, testing and running the application
-* “development” and “production” profiles 
+* “development” and “production” profiles
+* MapStruct to generate DTO 
 * Spring Security
 * Spring MVC REST + Jackson
 * Spring Data JPA + Bean Validation
 * Database updates with Liquibase
 * Hibernate
 * Ehcache
-* H2 Base for development purpose
+* H2 Data Base for development purpose
