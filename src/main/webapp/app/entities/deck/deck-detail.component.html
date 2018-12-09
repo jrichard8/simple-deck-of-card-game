@@ -7,8 +7,8 @@
             <dl class="row-md jh-entity-details">
                 <dt><span>Game</span></dt>
                 <dd>
-                    <div *ngIf="deck.game">
-                        <a [routerLink]="['/game', deck.game?.id, 'view']">{{deck.game?.id}}</a>
+                    <div *ngIf="deck.game_id">
+                        <a [routerLink]="['/game', deck.game_id, 'view']">{{deck.game_id}}</a>
                     </div>
                 </dd>
             </dl>
