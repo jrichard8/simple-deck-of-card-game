@@ -12,9 +12,9 @@
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_game">Game</label>
-                    <select class="form-control" id="field_game" name="game" [(ngModel)]="deck.game" >
+                    <select class="form-control" id="field_game" name="game" [(ngModel)]="deck.game_id" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="gameOption.id === deck.game?.id ? deck.game : gameOption" *ngFor="let gameOption of games; trackBy: trackGameById">{{gameOption.id}}</option>
+                        <option [ngValue]="gameOption.id === deck.game?.id ? deck.game_id : gameOption.id" *ngFor="let gameOption of games; trackBy: trackGameById">{{gameOption.name}}</option>
                     </select>
                 </div>
             </div>

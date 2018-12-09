@@ -35,4 +35,8 @@ export class GameService {
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
+
+    dealCard(playerId: number): Observable<EntityResponseType> {
+        return this.http.get<IGame>(`${this.resourceUrl}/dealcard/${playerId}`, { observe: 'response' });
+    }
 }

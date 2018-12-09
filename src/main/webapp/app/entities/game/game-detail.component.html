@@ -13,7 +13,23 @@
                 <dd>
                     <ul>
                         <li *ngFor="let player of game.players">
-                            <a [routerLink]="['/player', player.id, 'view' ]">{{player.name}}</a>
+                            <div class="row">
+                                <div class="col-2">
+                                    <a [routerLink]="['/player', player.id, 'view' ]">{{player.name}}</a>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit"
+                                            (click)="dealCard(player.id)"
+                                            class="btn btn-outline-success btn-sm">
+                                        deal card
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="btn-group" role="group" aria-label="Basic example" *ngFor="let card of player.hand?.cards">
+                                    <button type="button" class="btn btn-secondary btn-sm">{{card.value}}-{{card.suitType}}</button>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </dd>
@@ -31,6 +47,11 @@
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
             </button>
+        </div>
+    </div>
+    <div class="col-4">
+        <div>
+
         </div>
     </div>
 </div>

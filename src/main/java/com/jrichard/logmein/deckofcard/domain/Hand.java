@@ -1,13 +1,10 @@
 package com.jrichard.logmein.deckofcard.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Hand.
@@ -24,6 +21,7 @@ public class Hand implements Serializable {
 
     @OneToMany(mappedBy = "hand", cascade = CascadeType.REMOVE)
     private Set<Card> cards = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;

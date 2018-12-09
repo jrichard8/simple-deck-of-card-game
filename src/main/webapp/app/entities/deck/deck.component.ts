@@ -30,6 +30,7 @@ export class DeckComponent implements OnInit, OnDestroy {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+
     }
 
     ngOnInit() {
@@ -51,6 +52,8 @@ export class DeckComponent implements OnInit, OnDestroy {
     registerChangeInDecks() {
         this.eventSubscriber = this.eventManager.subscribe('deckListModification', response => this.loadAll());
     }
+
+
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);

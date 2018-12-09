@@ -28,6 +28,8 @@
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "otherModules": [],
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuAppName": "simple-deck-of-card-game",
+    "herokuDeployType": "jar"
   }
 }

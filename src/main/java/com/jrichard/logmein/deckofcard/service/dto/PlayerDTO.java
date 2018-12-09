@@ -5,6 +5,7 @@ public class PlayerDTO {
     private Long id;
     private String name;
     private Integer sumOfCardValue;
+    private HandDTO hand;
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class PlayerDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public HandDTO getHand() {
+        return hand;
+    }
+
+    public void setHand(HandDTO hand) {
+        this.hand = hand;
     }
 }

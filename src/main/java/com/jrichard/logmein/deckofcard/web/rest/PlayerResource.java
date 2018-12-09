@@ -3,11 +3,13 @@ package com.jrichard.logmein.deckofcard.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.jrichard.logmein.deckofcard.domain.Player;
 import com.jrichard.logmein.deckofcard.repository.PlayerRepository;
+import com.jrichard.logmein.deckofcard.service.PlayerService;
 import com.jrichard.logmein.deckofcard.web.rest.errors.BadRequestAlertException;
 import com.jrichard.logmein.deckofcard.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,9 @@ public class PlayerResource {
     private static final String ENTITY_NAME = "player";
 
     private final PlayerRepository playerRepository;
+
+    @Autowired
+    private PlayerService playerService;
 
     public PlayerResource(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;

@@ -29,7 +29,7 @@
                 <td>{{player.sumOfCardValue}}</td>
                 <td>
                     <div *ngIf="player.game">
-                        <a [routerLink]="['../game', player.game?.id, 'view' ]" >{{player.game?.id}}</a>
+                        <a [routerLink]="['../game', player.game?.id, 'view' ]" >{{player.game?.name}}</a>
                     </div>
                 </td>
                 <td>

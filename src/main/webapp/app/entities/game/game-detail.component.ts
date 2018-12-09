@@ -46,4 +46,13 @@ export class GameDetailComponent implements OnInit {
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
+
+    dealCard(playerid: number) {
+        this.gameService.dealCard(playerid).subscribe(
+            (res: HttpResponse<IGame>) => {
+                this.game = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        )
+    }
 }

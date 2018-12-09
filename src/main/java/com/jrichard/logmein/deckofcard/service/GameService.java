@@ -1,17 +1,22 @@
 package com.jrichard.logmein.deckofcard.service;
 
-import com.jrichard.logmein.deckofcard.domain.Deck;
-import com.jrichard.logmein.deckofcard.domain.Game;
-import com.jrichard.logmein.deckofcard.domain.Player;
-import com.jrichard.logmein.deckofcard.domain.Suit;
+import com.jrichard.logmein.deckofcard.domain.*;
+import com.jrichard.logmein.deckofcard.domain.enumeration.SuitEnum;
 import com.jrichard.logmein.deckofcard.repository.*;
 import com.jrichard.logmein.deckofcard.security.SecurityUtils;
+import com.jrichard.logmein.deckofcard.service.dto.GameDTO;
+import com.jrichard.logmein.deckofcard.service.dto.PlayerDTO;
+import com.jrichard.logmein.deckofcard.service.exception.PlayerNotInGameException;
+import com.jrichard.logmein.deckofcard.service.mapper.GameMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.OperationNotSupportedException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GameService {
@@ -32,7 +37,6 @@ public class GameService {
     private SuitRepository suitRepository;
     @Autowired
     private CardRepository carRepository;
-
 
 
     public void initializeGame(Game game) {
@@ -58,14 +62,44 @@ public class GameService {
     }
 
 
-
     public Game get(final Long id) {
         Optional<Game> gameById = gameRepository.findById(id);
-        if(!gameById.isPresent()) {
+        if (!gameById.isPresent()) {
             throw new IllegalArgumentException();
         }
         final Game game = gameById.get();
         return game;
     }
+
+    public GameDTO dealCard(Long playerId) throws PlayerNotInGameException, OperationNotSupportedException {
+        final Optional<Player> playerOptional = playerRepository.findById(playerId);
+
+        Player player = playerOptional.orElseThrow(IllegalArgumentException::new);
+        Game game = player.getGame();
+        if (game == null) {
+            throw new PlayerNotInGameException();
+        }
+        List<Card> allByHandIsNull = carRepository.findAllByHandIsNull();
+
+        Collections.shuffle(allByHandIsNull);
+        Hand hand = handRepository.save(new Hand());
+        if(player.getHand() == null) {
+            player.setHand(hand);
+        }
+        player.getHand().addCards(allByHandIsNull.get(0));
+        playerService.computeSumOfCard(player);
+        playerRepository.save(player);
+        return GameMapper.INSTANCE.gameToGameDto(game);
+    }
+
+    public List<PlayerDTO> getPlayerByCountOrder(Long gameId) {
+        List<Player> allByGameIdOrderBySumOfCardValue = playerRepository.findAllByGameIdOrderBySumOfCardValueDesc(gameId);
+        return allByGameIdOrderBySumOfCardValue
+            .stream()
+            .map(player -> GameMapper.INSTANCE.playerToPlayerDto(player))
+            .collect(Collectors.toList());
+    }
+
+
 
 }

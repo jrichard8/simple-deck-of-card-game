@@ -15,4 +15,5 @@ import java.util.List;
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     List<Player> findAllByGameId(Long id);
+    List<Player> findAllByGameIdOrderBySumOfCardValueDesc(Long id);
 }

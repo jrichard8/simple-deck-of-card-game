@@ -2,13 +2,16 @@ package com.jrichard.logmein.deckofcard.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.jrichard.logmein.deckofcard.domain.Game;
+import com.jrichard.logmein.deckofcard.domain.Player;
 import com.jrichard.logmein.deckofcard.repository.GameRepository;
 import com.jrichard.logmein.deckofcard.service.GameService;
 import com.jrichard.logmein.deckofcard.service.dto.GameDTO;
+import com.jrichard.logmein.deckofcard.service.dto.PlayerDTO;
+import com.jrichard.logmein.deckofcard.service.exception.NoMoreCardException;
+import com.jrichard.logmein.deckofcard.service.exception.PlayerNotInGameException;
 import com.jrichard.logmein.deckofcard.service.mapper.GameMapper;
 import com.jrichard.logmein.deckofcard.web.rest.errors.BadRequestAlertException;
 import com.jrichard.logmein.deckofcard.web.rest.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.OperationNotSupportedException;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -74,12 +79,11 @@ public class GameResource {
      * @return the ResponseEntity with status 200 (OK) and with body the updated game,
      * or with status 400 (Bad Request) if the game is not valid,
      * or with status 500 (Internal Server Error) if the game couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/games")
     @Timed
     @Transactional
-    public ResponseEntity<GameDTO> updateGame(@Valid @RequestBody Game game) throws URISyntaxException {
+    public ResponseEntity<GameDTO> updateGame(@Valid @RequestBody Game game) {
         log.debug("REST request to update Game : {}", game);
         if (game.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -144,4 +148,23 @@ public class GameResource {
         gameRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/games/dealcard/{playerId}")
+    @Timed
+    @Transactional
+    public ResponseEntity<GameDTO> dealCard(@PathVariable Long playerId) throws PlayerNotInGameException, OperationNotSupportedException {
+        GameDTO gameDTO = gameService.dealCard(playerId);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, gameDTO.getId().toString()))
+            .body(gameDTO);
+    }
+
+    @GetMapping("/games/players/ordered/{gameId}")
+    @Timed
+    @Transactional
+    public List<PlayerDTO> getPlayerByCountOrder(@PathVariable Long gameId) {
+        return gameService.getPlayerByCountOrder(gameId);
+    }
+
+
 }

@@ -20,24 +20,12 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_sumOfCardValue">Sum Of Card Value</label>
-                    <input type="number" class="form-control" name="sumOfCardValue" id="field_sumOfCardValue"
-                        [(ngModel)]="player.sumOfCardValue" />
-                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_game">Game</label>
                     <select class="form-control" id="field_game" name="game" [(ngModel)]="player.game" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="gameOption.id === player.game?.id ? player.game : gameOption" *ngFor="let gameOption of games; trackBy: trackGameById">{{gameOption.id}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_hand">Hand</label>
-                    <select class="form-control" id="field_hand" name="hand" [(ngModel)]="player.hand">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="handOption.id === player.hand?.id ? player.hand : handOption" *ngFor="let handOption of hands; trackBy: trackHandById">{{handOption.id}}</option>
+                        <option [ngValue]="gameOption.id === player.game?.id ? player.game : gameOption" *ngFor="let gameOption of games; trackBy: trackGameById">{{gameOption.name}}</option>
                     </select>
                 </div>
             </div>

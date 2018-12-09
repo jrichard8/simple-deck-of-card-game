@@ -2,11 +2,13 @@ package com.jrichard.logmein.deckofcard.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jrichard.logmein.deckofcard.domain.enumeration.SuitEnum;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.Objects;
 
@@ -53,6 +55,11 @@ public class Deck implements Serializable {
 
     public Set<Suit> getSuits() {
         return suits;
+    }
+
+    public Suit getSuits(SuitEnum suitType) {
+        Optional<Suit> any = suits.stream().filter(suit -> suit.getSuitType() == suitType).findAny();
+        return any.get();
     }
 
     public Deck suits(Set<Suit> suits) {

@@ -24,6 +24,7 @@ public interface GameMapper {
         @Mapping(source = "id", target = "id"),
         @Mapping(source = "name", target = "name"),
         @Mapping(source = "sumOfCardValue", target = "sumOfCardValue"),
+        @Mapping(source = "hand", target = "hand"),
     })
     PlayerDTO playerToPlayerDto(Player player);
 
@@ -43,9 +44,14 @@ public interface GameMapper {
         @Mapping(source = "id", target = "id"),
         @Mapping(source = "suitType", target = "suitType"),
         @Mapping(source = "value", target = "value"),
-        @Mapping(source = "hand", target = "hand"),
     })
     CardDTO cardToCardDto(Card card);
+
+    @Mappings({
+        @Mapping(source = "id", target = "id"),
+        @Mapping(source = "cards", target = "cards"),
+    })
+    HandDTO handToHandDTO(Hand hand);
 
 
 }

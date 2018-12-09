@@ -7,7 +7,6 @@ public class CardDTO {
 
     private SuitEnum suitType;
     private ValueEnum value;
-    private HandDTO hand;
     private Long id;
 
     public SuitEnum getSuitType() {
@@ -24,14 +23,6 @@ public class CardDTO {
 
     public void setValue(ValueEnum value) {
         this.value = value;
-    }
-
-    public HandDTO getHand() {
-        return hand;
-    }
-
-    public void setHand(HandDTO hand) {
-        this.hand = hand;
     }
 
     public Long getId() {

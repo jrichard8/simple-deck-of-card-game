@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IDeck } from 'app/shared/model/deck.model';
+import {SuitEnum} from "app/shared/model/suit.model";
 
 type EntityResponseType = HttpResponse<IDeck>;
 type EntityArrayResponseType = HttpResponse<IDeck[]>;
@@ -16,7 +17,8 @@ export class DeckService {
     constructor(private http: HttpClient) {}
 
     create(deck: IDeck): Observable<EntityResponseType> {
-        return this.http.post<IDeck>(this.resourceUrl, deck, { observe: 'response' });
+        // var data = {'deck': deck, gameid: deck.game_id}
+        return this.http.post<IDeck>(this.resourceUrl, deck.game_id, { observe: 'response' });
     }
 
     update(deck: IDeck): Observable<EntityResponseType> {
@@ -34,5 +36,9 @@ export class DeckService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    cardLeftBySuit(id: number): Observable<any> {
+        return this.http.get(`${this.resourceUrl}/cardleftbysuit/${id}`, { observe: 'response' })
     }
 }
