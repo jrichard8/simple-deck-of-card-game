@@ -14,7 +14,8 @@ you can also see a demo at this adress: [https://basic-poker-app.herokuapp.com/#
 
 * You also use `API` submenu in `Administation` menu to play with swagger. (You have to be log as admin user)
 
-I create some API to cover some exercise requirements but I havent call them in the UI.
+I create some API to cover some exercise requirements but I havent call them in the UI. 
+To Call those API via SWAGGER you have to be logged as admin in dev mode (checkout project and run mvnw).
 
 When you create a game, A complete deck is create and associate to the game. The creator user is also associated to the game.
 
