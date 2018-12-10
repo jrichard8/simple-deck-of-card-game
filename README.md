@@ -4,7 +4,7 @@ Just keep in mind that a part of the application was generated with JHipster 5.7
 
 If check out the project you can build and run the easily by running the command: `mvnw` in the root level of the project
 
-you can also see a demo at this adress:
+you can also see a demo at this adress: [https://basic-poker-app.herokuapp.com/#/](https://basic-poker-app.herokuapp.com/#/)
 
 ## USAGE
 * log in the application by using admin account OR the predefined user account OR by create your own account
