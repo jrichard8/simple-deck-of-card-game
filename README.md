@@ -1,10 +1,4 @@
-# Hi LogMeIn !
-You are welcome to check my code.
-Just keep in mind that a part of the application was generated with JHipster 5.7.0 you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.7.0](https://www.jhipster.tech/documentation-archive/v5.7.0).
-
-If check out the project you can build and run the easily by running the command: `mvnw` in the root level of the project
-
-you can also see a demo at this adress: [https://basic-poker-app.herokuapp.com/#/](https://basic-poker-app.herokuapp.com/#/)
+Dummy Java Application Using based On Jhipster
 
 ## USAGE
 * log in the application by using admin account OR the predefined user account OR by create your own account
@@ -19,10 +13,8 @@ To Call those API via SWAGGER you have to be logged as admin in dev mode (checko
 
 When you create a game, A complete deck is create and associate to the game. The creator user is also associated to the game.
 
-* To cover requirement of sorting suit or card left by suit I use SpringJPA on SQL database.
 * I generate the database model with JDLStudio [https://start.jhipster.tech/jdl-studio/](https://start.jhipster.tech/jdl-studio/), 
 have a look on file `basic-poker-game.jdl` at the project root level
-
 
 ## Technical Stack
 ### Technology stack on the client side
